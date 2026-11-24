@@ -78,6 +78,29 @@ button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulat
 @keyframes njBlink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
 @keyframes njTail{from{transform:rotate(-7deg)}to{transform:rotate(9deg)}}
 @media (prefers-reduced-motion:reduce){.ninja3d *{animation:none!important}}
+/* Word Dojo */
+.wd-picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;width:100%}
+.wd-pick{background:var(--soft);border-radius:22px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 5px 0 var(--line);color:var(--ink)}
+.wd-pick span{font-size:46px;line-height:1}.wd-pick b{font-size:21px}.wd-pick small{font-size:15px;color:var(--muted);font-weight:700}
+.wd-pick:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+.wd-intro{max-width:720px}
+.w-card{font-size:36px;font-weight:800;letter-spacing:.5px;font-family:"Andika","Century Gothic",ui-rounded,system-ui,sans-serif}
+.w-card.snd{font-size:44px;color:#3e63dd}
+.sent{font-size:32px;font-weight:700;text-align:center;line-height:1.4;margin:6px 0;font-family:"Andika","Century Gothic",ui-rounded,system-ui,sans-serif}
+.blank-slot{display:inline-block;min-width:64px;border-bottom:4px dashed var(--gold);color:var(--gold-d);font-weight:900;text-align:center;margin:0 4px}
+.fill{color:#2f9e62}.fill.magic{color:#8e4ec6;text-shadow:0 0 10px #d8b4fe}
+.ph-word{font-size:56px;font-weight:800;letter-spacing:2px;font-family:"Andika","Century Gothic",ui-rounded,system-ui,sans-serif}
+.magic-tip{font-size:19px;font-weight:800;color:#8e4ec6}
+.spell-slots{display:flex;gap:10px}
+.spell-slots .slot{width:56px;height:66px;border-radius:14px;background:var(--soft);border-bottom:4px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;font-family:"Andika","Century Gothic",ui-rounded,system-ui,sans-serif}
+.spell-slots .slot.in{background:#dff5e7;border-color:#2f9e62;animation:drop .3s ease-out}
+.choices.spell-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:12px}
+.zh-opt.ltr{min-height:84px;font-size:40px;font-weight:900;font-family:"Andika","Century Gothic",ui-rounded,system-ui,sans-serif}
+.zh-opt.used{opacity:.25;pointer-events:none}
+.zh-opt.shake{animation:cshake .45s}
+.chip-w{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;margin:2px;font-weight:700}
+.chip-w.ok{background:#dff5e7;color:#1f7a45}
+.sw-input{width:100%;font:inherit;font-size:18px;padding:10px 12px;border-radius:14px;border:2px solid var(--line);-webkit-user-select:text;user-select:text}
 /* Story Stage */
 .stage-home{display:flex;flex-direction:column;gap:16px}
 .stage-hello{display:flex;align-items:center;gap:18px}.stage-hello h2{margin:0;font-size:34px}.stage-hello p{margin:4px 0 0;font-size:20px;color:var(--muted)}
@@ -110,7 +133,7 @@ mark.clue{background:none;color:#c2410c;font-weight:900;text-decoration:underlin
 .rec-ctrl{width:100%;display:flex;justify-content:center}.rec-ctrl .btn{width:100%}
 .clue-q{font-size:24px;font-weight:800;color:var(--muted);margin:0;text-align:center}
 .clue-line{font-size:32px;font-weight:800;text-align:center;margin:8px 0;line-height:1.35}
-.cue-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.choices.cue-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cue-opt{background:var(--soft);border-radius:22px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:900;font-size:19px;box-shadow:0 5px 0 var(--line);color:var(--ink);min-height:110px;justify-content:center}
 .cue-opt.nope{opacity:.35;pointer-events:none}.cue-opt.right{background:#dff5e7;box-shadow:0 5px 0 #9fd8b4}
 .cue-big{font-size:44px;line-height:1}
@@ -138,7 +161,7 @@ mark.clue{background:none;color:#c2410c;font-weight:900;text-decoration:underlin
 .zh-q small{display:block;font-family:inherit;font-size:20px;color:var(--muted);font-weight:700}
 .bubble{background:var(--soft);border-radius:22px;padding:12px 18px;font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",system-ui,sans-serif;font-size:30px;font-weight:800;text-align:center}
 .bubble small{display:block;font-size:17px;color:var(--muted);font-weight:700}
-.zh-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
+.choices.zh-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
 .zh-opt{background:var(--soft);border-radius:22px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-shadow:0 5px 0 var(--line);min-height:124px;color:var(--ink)}
 .zh-opt:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
 .zh-opt.nope{opacity:.35;pointer-events:none}
@@ -396,11 +419,11 @@ const KEY = 'goldNinja.v1';
 function defaults() {
   return {
     nuggets: 0, earned: 0, cars: [], badges: {},
-    c: { streak: 0, fixed: 0, split: 0, mystery: 0, story: 0, words: 0, duelWins: 0, zh: 0, reads: 0 },
+    c: { streak: 0, fixed: 0, split: 0, mystery: 0, story: 0, words: 0, duelWins: 0, zh: 0, reads: 0, sounds: 0 },
     day: { date: '', missions: 0 },
     fp: { progress: 0, pending: 0, approved: 0, todayDate: '', today: 0 },
-    settings: { perPoint: 3, cap: 2, pin: '1234', pinSet: false, sfx: true, name: '' },
-    skill: {}, log: [], approvals: [], forgeNext: 0, stories: {}
+    settings: { perPoint: 3, cap: 2, pin: '1234', pinSet: false, sfx: true, name: '', sightWords: [] },
+    skill: {}, log: [], approvals: [], forgeNext: 0, stories: {}, sw: {}
   };
 }
 function deepMerge(d, s) {
@@ -989,7 +1012,9 @@ const BADGES = [
   { id: 'garage', name: 'Car Collector', desc: 'Got 3 cars', icon: '🏁' },
   { id: 'salad', name: 'Fruit Salad', desc: 'Finished the fruit chant', icon: '🥗' },
   { id: 'colors', name: 'Color Master', desc: '20 Mandarin colors', icon: '🎨' },
-  { id: 'stage', name: 'Story Star', desc: 'Read 5 stories to Buddy', icon: '🎭' }
+  { id: 'stage', name: 'Story Star', desc: 'Read 5 stories to Buddy', icon: '🎭' },
+  { id: 'sight', name: 'Sight Word Ninja', desc: '10 sight words mastered', icon: '👀' },
+  { id: 'sound', name: 'Sound Detective', desc: '25 phonics sounds', icon: '🔬' }
 ];
 const BADGE = Object.fromEntries(BADGES.map(b => [b.id, b]));
 // Every car has a size and a superpower. Tap a car you own to see its power.
@@ -1309,14 +1334,14 @@ function home() {
     <div class="tiles">
       <button class="tile t-dojo" data-go="dojo"><span class="t-ico">🥋</span><span class="t-name">Math Dojo</span><span class="t-sub">Ninja math missions</span></button>
       <button class="tile t-duel" data-go="duel"><span class="t-ico">🎲</span><span class="t-name">Dice Duel</span><span class="t-sub">Beat Red Ninja</span></button>
-      <button class="tile t-forge" data-go="forge"><span class="t-ico">🧱</span><span class="t-name">Word Forge</span><span class="t-sub">Build new words</span></button>
+      <button class="tile t-forge" data-go="words"><span class="t-ico">🧱</span><span class="t-name">Word Dojo</span><span class="t-sub">Phonics &amp; sight words</span></button>
       <button class="tile t-zh" data-go="zh"><span class="t-ico">🍓</span><span class="t-name">Fruit Chant</span><span class="t-sub">中文 colors</span></button>
       <button class="tile t-stage" data-go="stage"><span class="t-ico">🎭</span><span class="t-name">Story Stage</span><span class="t-sub">Read to Buddy</span></button>
       <button class="tile t-garage" data-go="garage"><span class="t-ico">🏎️</span><span class="t-name">Garage</span><span class="t-sub">Cars &amp; gold badges</span></button>
     </div>
     <button class="parent-link">🔒 Parent Corner</button></div></div>`);
   show(v);
-  v.querySelector('.tiles').onclick = e => { const t = e.target.closest('.tile'); if (!t) return; stopSpeech(); SFX.whoosh(); ({ dojo: dojoIntro, duel, forge, zh: zhIntro, stage: stageIntro, garage })[t.dataset.go](); };
+  v.querySelector('.tiles').onclick = e => { const t = e.target.closest('.tile'); if (!t) return; stopSpeech(); SFX.whoosh(); ({ dojo: dojoIntro, duel, forge, words: wordsIntro, zh: zhIntro, stage: stageIntro, garage })[t.dataset.go](); };
   v.querySelector('.parent-link').onclick = () => { stopSpeech(); parentGate(); };
 }
 
@@ -2156,6 +2181,258 @@ function stageBack(st, M, blob, levels) {
   });
 }
 
+/* ---------- Word Dojo: sight words + Sound Lab phonics ----------
+   Sight words start from the words in his class passage (the, put, his, with, said,
+   to, go, he, as, then, up, on, oh, no, let, us) plus common 1st-grade words.
+   A parent can paste the teacher's current list in Parent Corner. Each word tracks
+   a first-try streak, and 3 in a row counts as "mastered", so practice favors the
+   words he's still learning.
+   Sound Lab covers what his passages use: digraphs (sh, ch, th, wh, ck), blends,
+   and magic e (silent e). Same pacing rules: listen first, Ninja Breath for a rush,
+   help on the first miss. */
+const SW_DEFAULT = ['the', 'put', 'his', 'with', 'said', 'to', 'go', 'he', 'as', 'then', 'up', 'on', 'oh', 'no', 'let', 'us',
+  'was', 'they', 'you', 'have', 'of', 'come', 'some', 'what', 'where', 'could', 'would', 'should', 'there', 'were', 'from',
+  'do', 'one', 'two', 'look', 'like', 'see', 'are', 'my', 'for', 'here', 'want', 'who'];
+// sentence with a blank, plus two wrong choices that don't fit
+const SW_SENT = {
+  the: ['I see ___ big dog.', 'said', 'up'], put: ['___ the ball in the box.', 'Said', 'Was'], his: ['Max got ___ red car.', 'said', 'up'],
+  with: ['I play ___ my pup.', 'said', 'was'], said: ['"Hi!" ___ the frog.', 'put', 'up'], to: ['We go ___ the park.', 'was', 'he'],
+  go: ['Ready, set, ___!', 'said', 'his'], he: ['Max is fast. ___ can run!', 'Of', 'Said'], as: ['She is as fast ___ a cat.', 'up', 'he'],
+  then: ['First we eat, ___ we play.', 'said', 'of'], up: ['The kite went ___ in the sky.', 'said', 'he'], on: ['The cat sat ___ the mat.', 'said', 'he'],
+  oh: ['"___!" said Kit. "I see a frog!"', 'Put', 'Was'], no: ['"Oh ___! The cake fell!"', 'put', 'his'], let: ['___ us go to the park!', 'Said', 'Was'],
+  us: ['Come and play with ___!', 'said', 'was'], was: ['The cake ___ yummy.', 'said', 'up'], they: ['The pups ran. ___ were fast.', 'Then', 'Said'],
+  you: ['I like ___!', 'said', 'was'], have: ['I ___ a red ball.', 'said', 'of'], of: ['I want a cup ___ milk.', 'up', 'he'],
+  come: ['___ and play with me!', 'Said', 'Was'], some: ['Can I have ___ grapes?', 'said', 'was'], what: ['___ is in the box?', 'They', 'Was'],
+  where: ['___ is my hat?', 'Said', 'Have'], there: ['The ball is over ___.', 'said', 'they'], were: ['We ___ at the beach.', 'said', 'of'],
+  from: ['This gift is ___ Dad.', 'up', 'was'], do: ['___ you like cake?', 'Said', 'Up'], one: ['I have ___ hat.', 'said', 'of'],
+  two: ['A dog has ___ ears.', 'said', 'of'], look: ['___ at the big ship!', 'Said', 'Of'], like: ['I ___ pizza.', 'was', 'of'],
+  see: ['I can ___ the moon.', 'said', 'of'], are: ['You ___ my best pal.', 'said', 'of'], my: ['This is ___ bike.', 'said', 'up'],
+  for: ['This gift is ___ you.', 'up', 'he'], here: ['Come ___, pup!', 'said', 'of'], want: ['I ___ a snack.', 'said', 'of'],
+  who: ['___ is at the door?', 'Said', 'Up']
+};
+const swList = () => { const l = (S.settings.sightWords || []).filter(Boolean); return l.length ? l : SW_DEFAULT; };
+const swStat = w => (S.sw = S.sw || {}, S.sw[w] = S.sw[w] || { n: 0, streak: 0 });
+const swMastered = w => (S.sw && S.sw[w] && S.sw[w].streak >= 3);
+function swPickWords(n) {
+  const pool = swList(), learning = shuffle(pool.filter(w => !swMastered(w))), known = shuffle(pool.filter(swMastered));
+  const out = learning.slice(0, Math.min(n, Math.max(n - 2, learning.length)));
+  for (const w of known) { if (out.length >= n) break; out.push(w); }
+  for (const w of shuffle(pool.slice())) { if (out.length >= n) break; if (!out.includes(w)) out.push(w); }
+  while (out.length < n) out.push(pick(pool));
+  return shuffle(out);
+}
+function swLookalikes(w, k = 3) {
+  const pool = [...new Set(swList().concat(SW_DEFAULT))].filter(x => x !== w && x.toLowerCase() !== w.toLowerCase());
+  const score = x => (x[0] === w[0] ? 3 : 0) + (x.length === w.length ? 2 : 0) + (x.slice(-1) === w.slice(-1) ? 1 : 0) + Math.random() * 1.5;
+  return pool.sort((a, b) => score(b) - score(a)).slice(0, k);
+}
+const wordCard = w => `<span class="w-card">${escHTML(w)}</span>`;
+
+const SOUND_SAY = { sh: 'shh', ch: 'ch, like chip', th: 'th, like thumb', wh: 'w, like whale', ck: 'k, like duck' };
+const DIGRAPHS = [
+  { w: 'ship', e: '🚢', s: 'sh', end: false }, { w: 'sheep', e: '🐑', s: 'sh', end: false }, { w: 'shell', e: '🐚', s: 'sh', end: false }, { w: 'shirt', e: '👕', s: 'sh', end: false },
+  { w: 'fish', e: '🐟', s: 'sh', end: true }, { w: 'brush', e: '🪥', s: 'sh', end: true },
+  { w: 'chick', e: '🐤', s: 'ch', end: false }, { w: 'cheese', e: '🧀', s: 'ch', end: false }, { w: 'chair', e: '🪑', s: 'ch', end: false }, { w: 'cherry', e: '🍒', s: 'ch', end: false },
+  { w: 'lunch', e: '🍱', s: 'ch', end: true },
+  { w: 'thumb', e: '👍', s: 'th', end: false }, { w: 'three', e: '3️⃣', s: 'th', end: false }, { w: 'bath', e: '🛁', s: 'th', end: true },
+  { w: 'whale', e: '🐋', s: 'wh', end: false }, { w: 'wheel', e: '🛞', s: 'wh', end: false },
+  { w: 'duck', e: '🦆', s: 'ck', end: true }, { w: 'sock', e: '🧦', s: 'ck', end: true }, { w: 'rock', e: '🪨', s: 'ck', end: true }, { w: 'truck', e: '🚚', s: 'ck', end: true }
+];
+const BLENDS = [
+  { w: 'frog', e: '🐸', b: 'fr' }, { w: 'flag', e: '🚩', b: 'fl' }, { w: 'drum', e: '🥁', b: 'dr' }, { w: 'crab', e: '🦀', b: 'cr' },
+  { w: 'snake', e: '🐍', b: 'sn' }, { w: 'star', e: '⭐', b: 'st' }, { w: 'sled', e: '🛷', b: 'sl' }, { w: 'plug', e: '🔌', b: 'pl' },
+  { w: 'truck', e: '🚚', b: 'tr' }, { w: 'clap', e: '👏', b: 'cl' }, { w: 'grapes', e: '🍇', b: 'gr' }, { w: 'spoon', e: '🥄', b: 'sp' },
+  { w: 'swim', e: '🏊', b: 'sw' }, { w: 'skunk', e: '🦨', b: 'sk' }, { w: 'glove', e: '🧤', b: 'gl' }, { w: 'bread', e: '🍞', b: 'br' },
+  { w: 'block', e: '🧱', b: 'bl' }, { w: 'smile', e: '😊', b: 'sm' }
+];
+const ALL_BLENDS = [...new Set(BLENDS.map(x => x.b))];
+const MAGIC_E = [
+  { s: 'kit', e: 'kite', em: '🪁' }, { s: 'cub', e: 'cube', em: '🧊' }, { s: 'pin', e: 'pine', em: '🌲' }, { s: 'cap', e: 'cape', em: '🦸' },
+  { s: 'man', e: 'mane', em: '🦁' }, { s: 'tub', e: 'tube', em: '🧪' }, { s: 'not', e: 'note', em: '🎵' }, { s: 'plan', e: 'plane', em: '✈️' },
+  { s: 'slid', e: 'slide', em: '🛝' }, { s: 'rob', e: 'robe', em: '👘' }, { s: 'rid', e: 'ride', em: '🎢' }
+];
+
+function wdBuild(kind, x) {
+  if (kind === 'swHear') {
+    const opts = shuffle([x, ...swLookalikes(x)]);
+    return { type: 'choice', skill: 'swRead', track: x, answer: x,
+      stage: '<div class="zh-big-fruit">👂</div>', q: 'Find the word you hear.',
+      opts: opts.map(w => ({ v: w, html: wordCard(w), label: w })),
+      say: [{ en: `Find the word: ${x}.` }, { en: `${x}.` }],
+      hint: [{ en: `Listen: ${x}. Look at the first letter. ${x} starts with ${x[0].toUpperCase()}.` }],
+      done: [{ en: `${x}! You read it!` }], praise: `<b>${escHTML(x)}</b>! You found it!` };
+  }
+  if (kind === 'swSent') {
+    const [sent, d1, d2] = SW_SENT[x];
+    const capFirst = sent.startsWith('___') || sent.startsWith('"___');
+    const ans = capFirst ? cap(x) : x;
+    const opts = shuffle([ans, d1, d2]);
+    const show = escHTML(sent).replace('___', '<span class="blank-slot">?</span>');
+    return { type: 'choice', skill: 'swSent', track: x, answer: ans,
+      stage: `<p class="sent">${show}</p>`, q: 'Which word fits?',
+      opts: opts.map(w => ({ v: w, html: wordCard(w), label: w })),
+      say: [{ en: `Read the sentence. Which word fits? ${sent.replace('___', 'blank').replace(/"/g, '')}` }],
+      hint: [{ en: `Try each word in the sentence. Read it with each one. Which one sounds right?` }],
+      done: [{ en: sent.replace('___', ans).replace(/"/g, '') }], praise: escHTML(sent).replace('___', `<b>${escHTML(ans)}</b>`),
+      after: `<p class="sent">${escHTML(sent).replace('___', `<b class="fill">${escHTML(ans)}</b>`)}</p>` };
+  }
+  if (kind === 'swSpell') {
+    return { type: 'spell', skill: 'swSpell', track: x, word: x.toLowerCase(),
+      say: [{ en: `Spell the word: ${x}.` }, { en: `${x}. Tap the letters in order.` }],
+      done: [{ en: `${x.split('').join(', ')}. ${x}! You spelled it!` }], praise: `You spelled <b>${escHTML(x)}</b>!` };
+  }
+  if (kind === 'digraph') {
+    const opts = shuffle(x.end ? ['sh', 'ch', 'th', 'ck'] : ['sh', 'ch', 'th', 'wh']);
+    const rest = x.end ? x.w.slice(0, x.w.length - 2) : x.w.slice(2);
+    const shown = x.end ? `${rest}<span class="blank-slot">?</span>` : `<span class="blank-slot">?</span>${rest}`;
+    const where = x.end ? 'end' : 'beginning';
+    return { type: 'choice', skill: 'digraph', answer: x.s,
+      stage: `<div class="zh-big-fruit">${x.e}</div><div class="ph-word">${shown}</div>`, q: `What sound is at the ${where}?`,
+      opts: opts.map(s => ({ v: s, html: `<span class="w-card snd">${s}</span>`, label: s })),
+      say: [{ en: `${x.w}. What sound do you hear at the ${where} of ${x.w}?` }],
+      hint: [{ en: `Say it slowly: ${x.w}. Listen for ${SOUND_SAY[x.s]}.` }, { en: `Two letters, one sound!` }],
+      done: [{ en: `${x.w}! ${x.s.split('').join(' ')} makes ${SOUND_SAY[x.s].split(',')[0]}.` }], praise: `<b>${x.s}</b> in <b>${x.w}</b>!`,
+      after: `<div class="zh-big-fruit">${x.e}</div><div class="ph-word">${x.end ? `${rest}<b class="fill">${x.s}</b>` : `<b class="fill">${x.s}</b>${rest}`}</div>` };
+  }
+  if (kind === 'blend') {
+    const same = ALL_BLENDS.filter(b => b !== x.b && (b[0] === x.b[0] || b[1] === x.b[1]));
+    const opts = shuffle([x.b, ...shuffle(same).slice(0, 2), ...shuffle(ALL_BLENDS.filter(b => b !== x.b && !same.includes(b))).slice(0, 1)]).slice(0, 4);
+    if (!opts.includes(x.b)) opts[0] = x.b;
+    const rest = x.w.slice(2);
+    return { type: 'choice', skill: 'blend', answer: x.b,
+      stage: `<div class="zh-big-fruit">${x.e}</div><div class="ph-word"><span class="blank-slot">?</span>${rest}</div>`, q: `Which blend starts ${x.w}?`,
+      opts: shuffle(opts).map(s => ({ v: s, html: `<span class="w-card snd">${s}</span>`, label: s })),
+      say: [{ en: `${x.w}. Which two letters start ${x.w}?` }],
+      hint: [{ en: `Stretch it out: ${x.w.split('').join(' ')}. Listen for both sounds at the start.` }],
+      done: [{ en: `${x.b.split('').join(' ')}, ${x.w}!` }], praise: `<b>${x.b}</b> + <b>${rest}</b> = <b>${x.w}</b>!`,
+      after: `<div class="zh-big-fruit">${x.e}</div><div class="ph-word"><b class="fill">${x.b}</b>${rest}</div>` };
+  }
+  // magic e: the e makes the vowel say its name
+  const other = pick(MAGIC_E.filter(m => m.e !== x.e));
+  return { type: 'choice', skill: 'magicE', answer: x.e,
+    stage: `<div class="zh-big-fruit">${x.em}</div><div class="magic-tip">✨ Magic E makes the vowel say its name!</div>`, q: `Which word says "${x.e}"?`,
+    opts: shuffle([x.s, x.e, other.e]).map(w => ({ v: w, html: wordCard(w), label: w })),
+    say: [{ en: `Magic E! Which word says ${x.e}?` }],
+    hint: [{ en: `${x.s} has a short sound. Add magic E, and it says ${x.e}. Look for the E at the end.` }],
+    done: [{ en: `${x.s}. Add magic E... ${x.e}!` }], praise: `<b>${x.s}</b> + e = <b>${x.e}</b>!`,
+    after: `<div class="zh-big-fruit">${x.em}</div><div class="ph-word">${x.s}<b class="fill magic">e</b></div>` };
+}
+
+function wordsIntro() {
+  const v = el(`<div class="screen">${hudHTML('Word Dojo')}<div class="center-col"><div class="card intro wd-intro">
+    <div class="zh-fruits" aria-hidden="true">🧱 👀 🔬</div><h2>Word Dojo</h2><p>Pick your training.</p>
+    <div class="wd-picks">
+      <button class="wd-pick go-forge"><span>🧱</span><b>Word Forge</b><small>Change one sound</small></button>
+      <button class="wd-pick go-sight"><span>👀</span><b>Sight Words</b><small>Read, find and spell</small></button>
+      <button class="wd-pick go-sound"><span>🔬</span><b>Sound Lab</b><small>sh, ch, th, blends, magic e</small></button>
+    </div></div></div></div>`);
+  show(v); bindHud(v);
+  v.querySelector('.go-forge').onclick = () => { stopSpeech(); forge(); };
+  v.querySelector('.go-sight').onclick = () => { stopSpeech(); wdMission('sight'); };
+  v.querySelector('.go-sound').onclick = () => { stopSpeech(); wdMission('sound'); };
+  speak('Word Dojo! Word Forge, Sight Words, or Sound Lab?');
+}
+function wdMission(mode) {
+  let rounds;
+  if (mode === 'sight') {
+    const ws = swPickWords(8);
+    const withSent = ws.filter(w => SW_SENT[w.toLowerCase()]);
+    rounds = ws.map((w, i) => {
+      if (i % 3 === 1 && SW_SENT[w.toLowerCase()]) return ['swSent', w.toLowerCase()];
+      if (i % 3 === 2) return ['swSpell', w];
+      return ['swHear', w];
+    });
+    if (!rounds.some(r => r[0] === 'swSent') && withSent.length) rounds[1] = ['swSent', withSent[0].toLowerCase()];
+  } else {
+    const dg = shuffle(DIGRAPHS.slice()), bl = shuffle(BLENDS.slice()), me = shuffle(MAGIC_E.slice());
+    rounds = shuffle([['digraph', dg[0]], ['digraph', dg[1]], ['digraph', dg[2]], ['blend', bl[0]], ['blend', bl[1]], ['blend', bl[2]], ['magicE', me[0]], ['magicE', me[1]]]);
+  }
+  wdRound({ area: mode === 'sight' ? 'Sight Words' : 'Sound Lab', mode, rounds: rounds.map(([k, x]) => wdBuild(k, x)), i: 0, nuggets: 0, first: 0, fixed: 0, breaths: 0, badges: [], count: 0 });
+}
+function wdRound(M) {
+  const R = M.rounds[M.i];
+  const spell = R.type === 'spell';
+  let tiles = [];
+  if (spell) { const extra = shuffle('abcdefghilmnoprstuw'.split('').filter(c => !R.word.includes(c))).slice(0, 2); tiles = shuffle(R.word.split('').concat(extra)); }
+  const v = el(`<div class="screen">${hudHTML(M.area)}<div class="zh">
+    <div class="card zh-card"><div class="prob-head"><span class="chip">${M.area}</span><span class="dots">${M.rounds.map((_, k) => `<i class="${k < M.i ? 'done' : k === M.i ? 'now' : ''}"></i>`).join('')}</span><button class="icon-btn say" aria-label="Hear it again">🔊</button></div>
+      <div class="zh-stage">${spell ? `<div class="zh-big-fruit">✏️</div><div class="spell-slots">${R.word.split('').map(() => '<span class="slot"></span>').join('')}</div>` : R.stage}</div>
+      <div class="zh-q">${spell ? 'Spell the word you hear.' : R.q}</div><div class="zh-help"></div><div class="msg"></div></div>
+    <div class="zh-side"><div class="choices ${spell ? 'spell-tiles' : 'zh-choices wd-choices'} locked">${spell ? tiles.map((c, k) => `<button class="zh-opt ltr" data-v="${c}" data-k="${k}">${c}</button>`).join('') : R.opts.map(o => `<button class="zh-opt" data-v="${escHTML(o.v)}" aria-label="${escHTML(o.label)}">${o.html}</button>`).join('')}<div class="pad-lock">👂 Listen first…</div></div>
+      <div class="next-slot"></div></div>
+  </div></div>`);
+  const sid = show(v); bindHud(v);
+  const alive = () => sid === SCREEN;
+  const q = s => v.querySelector(s);
+  const box = q('.choices'), msg = q('.msg'), helpEl = q('.zh-help');
+  let unlockAt = 0, busy = false, wrong = 0, breathed = false, pos = 0, missRun = 0;
+  q('.say').onclick = e => sayAgain(e.currentTarget, R.say);
+  async function listen() { busy = true; box.classList.add('locked'); await sayParts(R.say); if (!alive()) return; box.classList.remove('locked'); SFX.ready(); unlockAt = Date.now(); busy = false; }
+  async function miss(b) {
+    wrong++;
+    const fast = Date.now() - unlockAt < 1500;
+    if (fast && !breathed) { breathed = true; M.breaths++; await ninjaBreath(); if (alive()) listen(); return; }
+    SFX.check(); b.classList.add(spell ? 'shake' : 'nope'); if (spell) setTimeout(() => b.classList.remove('shake'), 450);
+    if (spell) {
+      missRun++;
+      const want = R.word[pos];
+      if (missRun >= 2) { const t = [...box.querySelectorAll('.ltr:not(.used)')].find(t => t.dataset.v === want); if (t) t.classList.add('pulse'); msg.textContent = 'Tap the glowing letter.'; await speak(`Tap the glowing letter, ${want}.`); }
+      else { msg.textContent = 'Listen for the next sound.'; await speak(`Listen: ${R.word}. What comes next?`); }
+    } else if (wrong === 1) {
+      msg.textContent = "Let's check it, ninja.";
+      if (R.help) helpEl.innerHTML = `<div class="help">${R.help}</div>`;
+      await sayParts(R.hint);
+    } else {
+      box.querySelector(`.zh-opt[data-v="${CSS.escape(R.answer)}"]`).classList.add('pulse');
+      msg.textContent = 'Tap the glowing one.'; await speak('Tap the glowing one.');
+    }
+    if (!alive()) return;
+    box.classList.remove('locked'); unlockAt = Date.now(); busy = false;
+  }
+  box.onclick = async e => {
+    const b = e.target.closest('.zh-opt'); if (!b || busy || box.classList.contains('locked') || b.classList.contains('used')) return;
+    busy = true; box.classList.add('locked');
+    if (spell) {
+      if (b.dataset.v === R.word[pos]) {
+        SFX.key(pos % 10); b.classList.add('used'); b.classList.remove('pulse'); missRun = 0; msg.textContent = '';
+        q('.spell-slots').children[pos].textContent = b.dataset.v; q('.spell-slots').children[pos].classList.add('in'); pos++;
+        if (pos === R.word.length) { SFX.correct(); return success(); }
+        box.classList.remove('locked'); unlockAt = Date.now(); busy = false; return;
+      }
+      return miss(b);
+    }
+    if (b.dataset.v === R.answer) { SFX.correct(); b.classList.add('right'); return success(); }
+    return miss(b);
+  };
+  async function success() {
+    const first = wrong === 0, n = 2;
+    S.nuggets += n; S.earned += n; M.nuggets += n; M.count++;
+    if (first) { M.first++; } else { M.fixed++; S.c.fixed++; }
+    stat(R.skill, { first, fixed: !first, breaths: breathed ? 1 : 0 });
+    if (R.track) {
+      const st = swStat(R.track.toLowerCase()); st.n++; st.streak = first ? st.streak + 1 : 0;
+      if (swList().filter(swMastered).length >= 10) award('sight', M.badges);
+    } else { S.c.sounds = (S.c.sounds || 0) + 1; if (S.c.sounds >= 25) award('sound', M.badges); }
+    if (S.c.fixed >= 3) award('comeback', M.badges);
+    save(); updateHud();
+    helpEl.innerHTML = '';
+    if (R.after) q('.zh-stage').innerHTML = R.after;
+    msg.innerHTML = `<span class="praise">${R.praise}</span><span class="earn">+${n} ${NUG}</span>`;
+    await sayParts(R.done); if (!alive()) return;
+    const lastRound = M.i === M.rounds.length - 1;
+    const next = el(`<button class="btn big gold next">${lastRound ? 'Finish ➜' : 'Next ➜'}</button>`);
+    q('.next-slot').appendChild(next);
+    next.onclick = () => {
+      stopSpeech(); M.i++;
+      if (!lastRound) return wdRound(M);
+      M.summary = `${M.first} right on the first try${M.fixed ? ` · ${M.fixed} fixed` : ''}`;
+      M.summarySay = `You got ${M.first} right on the first try${M.fixed ? `, and fixed ${M.fixed}` : ''}. ${M.mode === 'sight' ? 'Your sight words are getting strong!' : 'Super sound detective!'}`;
+      celebrate(M, () => wdMission(M.mode));
+    };
+  }
+  listen();
+}
+
 function carCard(c, owned) {
   const sz = CAR_SIZES[c.size] || CAR_SIZES.M, pw = c.power;
   const inner = `<div class="car-stage" style="--sz:${sz.sz}">${carSVG(c)}</div>
@@ -2218,7 +2495,7 @@ function parentGate() {
   const pad = makePad({ maxLen: 6, raw: true, onSubmit: val => { if (val === S.settings.pin) parentScreen(); else { pad.clear(); v.querySelector('.msg').textContent = 'That PIN doesn\'t match.'; } } });
   pad.unlock(); v.querySelector('.pin-pad').appendChild(pad.el);
 }
-const SKILL_NAMES = { split: 'Ninja Split (subtract through 10)', useTen: 'Use the 10 (− 9)', doubleSub: 'Near doubles (−)', doubles: 'Near doubles (+)', mystery: 'Mystery number (missing addend, = either side)', story: 'Story problems', balance: 'True/false equations', duel: 'Dice Duel facts', words: 'Word Forge (change one sound)', zhRead: 'Mandarin: read color words', zhHear: 'Mandarin: hear a color', zhChant: 'Fruit chant order', zhMix: 'Color mixing', expr: 'Story Stage: voice clues', readAloud: 'Story Stage: read aloud (1st try = first read of a visit)' };
+const SKILL_NAMES = { split: 'Ninja Split (subtract through 10)', useTen: 'Use the 10 (− 9)', doubleSub: 'Near doubles (−)', doubles: 'Near doubles (+)', mystery: 'Mystery number (missing addend, = either side)', story: 'Story problems', balance: 'True/false equations', duel: 'Dice Duel facts', words: 'Word Forge (change one sound)', zhRead: 'Mandarin: read color words', zhHear: 'Mandarin: hear a color', zhChant: 'Fruit chant order', zhMix: 'Color mixing', expr: 'Story Stage: voice clues', swRead: 'Sight words: find the word', swSent: 'Sight words: in a sentence', swSpell: 'Sight words: spelling', digraph: 'Phonics: sh, ch, th, wh, ck', blend: 'Phonics: blends', magicE: 'Phonics: magic e', readAloud: 'Story Stage: read aloud (1st try = first read of a visit)' };
 function parentScreen() {
   const st = S.settings, fp = S.fp;
   const rows = Object.entries(S.skill).map(([k, s]) => `<tr><td>${SKILL_NAMES[k] || k}</td><td>${s.n}</td><td>${s.n ? Math.round(100 * s.first / s.n) : 0}%</td><td>${s.fixed}</td><td>${s.breaths}</td></tr>`).join('');
@@ -2234,6 +2511,12 @@ function parentScreen() {
     <div class="card"><h3>How ${escHTML(kidName())} is doing</h3>
       ${rows ? `<table><tr><th>Skill</th><th>Problems</th><th>First try</th><th>Fixed</th><th>Ninja Breaths</th></tr>${rows}</table>` : '<p>No practice yet.</p>'}
       <p><b>Ninja Breaths</b> = times he answered wrong within 1.5 s of being able to answer (a rushing signal). <b>Fixed</b> = got it after a mistake.</p></div>
+    <div class="card"><h3>Sight words</h3>
+      <p>Paste the teacher's current list (spaces or commas). Leave it empty to use the built-in 1st-grade list.</p>
+      <textarea class="sw-input" rows="3" placeholder="the, said, was, they, could, would, should">${escHTML((st.sightWords || []).join(', '))}</textarea>
+      <p><button class="btn save-sw">Save word list</button></p>
+      <p><b>Mastered</b> (3 first tries in a row): ${swList().filter(swMastered).map(w => `<span class="chip-w ok">${escHTML(w)}</span>`).join(' ') || 'none yet'}</p>
+      <p><b>Still learning:</b> ${swList().filter(w => !swMastered(w)).map(w => `<span class="chip-w">${escHTML(w)}</span>`).join(' ')}</p></div>
     <div class="card"><h3>Read-aloud recordings</h3><div class="recs"><p>Loading…</p></div><p class="sync-note">The latest recording of each Story Stage story, saved on this device. Good to play for his teacher.</p></div>
     <div class="card"><h3>Recent missions</h3>${logRows ? `<table><tr><th>When</th><th>Area</th><th>Items</th><th>1st try</th><th>Fixed</th><th>Breaths</th></tr>${logRows}</table>` : '<p>None yet.</p>'}</div>
     <div class="card"><h3>Settings</h3>
@@ -2273,6 +2556,11 @@ function parentScreen() {
     let audio = null;
     box.onclick = e => { const b = e.target.closest('.rec-play'); if (!b) return; if (audio) audio.pause(); audio = new Audio(URL.createObjectURL(list[+b.dataset.k].blob)); audio.play().catch(() => toast('Could not play the recording here.')); };
   }).catch(() => { const box = v.querySelector('.recs'); if (box) box.innerHTML = '<p>Recordings are not available in this browser.</p>'; });
+  v.querySelector('.save-sw').onclick = () => {
+    const ws = [...new Set(v.querySelector('.sw-input').value.toLowerCase().split(/[\s,;]+/).map(w => w.replace(/[^a-z']/g, '')).filter(Boolean))].slice(0, 60);
+    S.settings.sightWords = ws; save(); parentScreen();
+    tell(ws.length ? `Saved ${ws.length} sight words. Practice will focus on these.` : 'Using the built-in 1st-grade list.');
+  };
   v.querySelector('.sfx-toggle').onclick = () => { S.settings.sfx = S.settings.sfx === false; save(); parentScreen(); SFX.select(); };
   v.querySelector('.reset').onclick = async () => {
     if (!await askConfirm('Erase all progress, nuggets, cars and badges on this device?', 'Erase')) return;
@@ -2283,7 +2571,15 @@ function parentScreen() {
 
 splash();
 // Works offline once installed: the service worker keeps a copy of the app on the iPad.
-if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(reg => reg.update()).catch(() => {});
+  // When a newer version takes over, reload right away if he's on the start or home screen (never mid-game).
+  let hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController) { hadController = true; return; }
+    if (app.querySelector('.splash, .home')) location.reload();
+  });
+}
 </script>
 </body>
 </html>
