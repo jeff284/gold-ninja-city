@@ -47,11 +47,11 @@ button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulat
 .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 /* splash + home */
 .splash{align-items:center;justify-content:center;text-align:center;color:#fff}
-.splash svg{width:170px;height:190px;animation:bounce 2.2s infinite}
+.splash svg{width:230px;height:216px}
 .splash h1{font-size:58px;margin:8px 0 0}.splash p{font-size:26px;opacity:.85;margin:6px 0 26px}
 .home{display:flex;flex-direction:column;gap:20px;flex:1}
 .hero{display:flex;align-items:center;gap:18px;color:#fff}
-.hero svg{width:100px;height:110px;flex:none}
+.hero svg{width:130px;height:122px;flex:none}
 .hero h1{margin:0;font-size:44px}.hero p{margin:4px 0 0;font-size:22px;opacity:.85}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1}
 .tile{border-radius:30px;padding:24px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;min-height:180px;color:#fff;text-align:left;box-shadow:0 8px 0 rgba(0,0,0,.28);position:relative;overflow:hidden}
@@ -61,7 +61,68 @@ button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulat
 .t-dojo{background:linear-gradient(135deg,#f5b400,#d86f00)}.t-duel{background:linear-gradient(135deg,#e5484d,#9e1f33)}
 .t-forge{background:linear-gradient(135deg,#12a594,#0a6158)}.t-garage{background:linear-gradient(135deg,#3e63dd,#283b9c)}
 .t-zh{background:linear-gradient(135deg,#ff5d8f,#b8326b)}
-.tiles .t-garage{grid-column:1/-1;min-height:130px}
+.t-stage{background:linear-gradient(135deg,#8e4ec6,#5b2a91)}
+@media (min-width:1000px) and (orientation:landscape){.tiles{grid-template-columns:repeat(3,1fr)}.tile{min-height:160px}}
+/* the animated Gold Ninja */
+.ninja3d{overflow:visible}
+.ninja3d .nj-all{animation:njHover 2.4s ease-in-out infinite}
+.ninja3d .nj-wing{transform-box:view-box;transform-origin:66px 88px;animation:njFlap .42s ease-in-out infinite alternate}
+.ninja3d .nj-arm{transform-box:view-box;transform-origin:100px 76px;animation:njSlash 2.4s ease-in-out infinite}
+.ninja3d .nj-trail{opacity:0;animation:njTrail 2.4s linear infinite}
+.ninja3d .nj-eyes{transform-box:fill-box;transform-origin:center;animation:njBlink 4.2s infinite}
+.ninja3d .nj-tail{transform-box:view-box;transform-origin:104px 43px;animation:njTail .5s ease-in-out infinite alternate}
+@keyframes njHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes njFlap{from{transform:rotate(14deg)}to{transform:rotate(-24deg)}}
+@keyframes njSlash{0%,46%{transform:rotate(0)}56%{transform:rotate(-20deg)}63%{transform:rotate(108deg)}72%{transform:rotate(100deg)}92%,100%{transform:rotate(0)}}
+@keyframes njTrail{0%,59%{opacity:0}62%{opacity:.95}76%,100%{opacity:0}}
+@keyframes njBlink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes njTail{from{transform:rotate(-7deg)}to{transform:rotate(9deg)}}
+@media (prefers-reduced-motion:reduce){.ninja3d *{animation:none!important}}
+/* Story Stage */
+.stage-home{display:flex;flex-direction:column;gap:16px}
+.stage-hello{display:flex;align-items:center;gap:18px}.stage-hello h2{margin:0;font-size:34px}.stage-hello p{margin:4px 0 0;font-size:20px;color:var(--muted)}
+.buddy-big{font-size:70px;line-height:1}
+.story-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.story-pick{background:var(--card);border-radius:24px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 6px 0 rgba(0,0,0,.25);color:var(--ink)}
+.story-pick:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.sp-e{font-size:56px;line-height:1}.sp-t{font-weight:900;font-size:21px;text-align:center}.sp-n{font-size:15px;color:var(--muted);font-weight:700}
+.stage-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
+@media (orientation:portrait),(max-width:900px){.stage-wrap{grid-template-columns:1fr}}
+.story-card{display:flex;flex-direction:column;gap:12px}
+.steps{display:flex;flex-wrap:wrap;gap:6px}.steps span{font-size:14px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.steps .done{background:#dff5e7;color:#1f7a45}.steps .now{background:var(--ink);color:var(--gold-l)}
+.story-text{display:flex;flex-direction:column;gap:6px}
+.sline{margin:0;font-size:28px;line-height:1.4;padding:6px 12px;border-radius:14px;display:flex;gap:10px;align-items:flex-start;transition:opacity .2s,background .2s}
+.sline.on{background:#fff4c7;box-shadow:inset 4px 0 0 var(--gold)}.sline.dim{opacity:.35}.sline.read{opacity:.75}
+.cue-ic{flex:none;font-size:24px;line-height:1.6}
+mark.clue{background:none;color:#c2410c;font-weight:900;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}
+.cue-key{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:16px;color:var(--muted);font-weight:700;margin:0}
+.buddy-card{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.buddy-face{font-size:96px;line-height:1;transition:transform .08s}
+.buddy-face.rec{filter:drop-shadow(0 0 14px rgba(229,72,77,.55))}
+.buddy-face.happy{font-size:64px;animation:bounce 1s infinite}
+.buddy-say{font-size:21px;font-weight:800;margin:0}
+.meter{display:flex;gap:4px;height:28px;align-items:flex-end}
+.meter i{width:12px;height:100%;border-radius:4px;background:var(--line)}
+.meter i.on{background:linear-gradient(180deg,#ffd84d,#2f9e62)}
+.meter i:nth-child(n+9).on{background:linear-gradient(180deg,#ff8b3d,#e5484d)}
+.rec-btn{background:linear-gradient(180deg,#ff6b6f,#e5484d);color:#fff;box-shadow:0 5px 0 #9e1f33}
+.rec-ctrl{width:100%;display:flex;justify-content:center}.rec-ctrl .btn{width:100%}
+.clue-q{font-size:24px;font-weight:800;color:var(--muted);margin:0;text-align:center}
+.clue-line{font-size:32px;font-weight:800;text-align:center;margin:8px 0;line-height:1.35}
+.cue-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cue-opt{background:var(--soft);border-radius:22px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:900;font-size:19px;box-shadow:0 5px 0 var(--line);color:var(--ink);min-height:110px;justify-content:center}
+.cue-opt.nope{opacity:.35;pointer-events:none}.cue-opt.right{background:#dff5e7;box-shadow:0 5px 0 #9fd8b4}
+.cue-big{font-size:44px;line-height:1}
+.woof{display:flex;align-items:center;gap:16px}.woof h2{margin:0;font-size:32px}
+.fb{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:20px;font-weight:700}
+.fb li{background:var(--soft);border-radius:14px;padding:10px 14px}
+.check-h{margin:0;font-size:24px}
+.self-check{display:flex;flex-direction:column;gap:10px;width:100%}
+.sc{display:flex;align-items:center;gap:10px;text-align:left;background:var(--soft);border-radius:16px;padding:12px 14px;font-weight:800;font-size:18px;color:var(--ink)}
+.sc[aria-pressed="true"]{background:#fff4c7}.sc .star{font-size:26px}
+.tip-small{font-size:15px;color:var(--muted);margin:0}
+.rec-row{display:flex;align-items:center;gap:12px;margin:6px 0;flex-wrap:wrap}
 /* Fruit Chant */
 .zh{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
 .zh-card{display:flex;flex-direction:column;gap:12px;min-height:380px}
@@ -102,7 +163,7 @@ button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulat
 @media (orientation:portrait),(max-width:900px){.zh{grid-template-columns:1fr}}
 .parent-link{align-self:center;color:rgba(255,255,255,.6);font-size:18px;padding:12px 18px}
 .intro{text-align:center;max-width:560px;width:100%}
-.intro svg{width:110px;height:120px}.intro h2{font-size:44px;margin:6px 0}.intro p{font-size:24px;margin:0 0 22px}
+.intro svg{width:150px;height:140px}.intro h2{font-size:44px;margin:6px 0}.intro p{font-size:24px;margin:0 0 22px}
 /* dojo */
 .dojo,.duel{display:grid;grid-template-columns:1fr 360px;gap:18px;flex:1;align-items:start}
 .forge{display:grid;grid-template-columns:1fr 240px;gap:18px;flex:1;align-items:start}
@@ -212,7 +273,7 @@ button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulat
 .new-badges{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
 /* duel */
 .players{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
-.pl{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px}.pl svg{width:50px;height:56px}
+.pl{display:flex;align-items:center;gap:8px;font-weight:800;font-size:22px}.pl svg{width:66px;height:62px}
 .vs{font-weight:800;color:var(--muted);text-align:center}
 .board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
 .cell{aspect-ratio:1;border-radius:18px;background:var(--soft);font-size:36px;font-weight:900;box-shadow:0 4px 0 var(--line)}
@@ -328,18 +389,18 @@ const today = () => { const d = new Date(); return d.getFullYear() + '-' + Strin
 const sayExpr = s => String(s).replace(/\+/g, ' plus ').replace(/−/g, ' minus ').replace(/=/g, ' equals ');
 const app = document.getElementById('app');
 let SCREEN = 0;
-function show(node) { SCREEN++; app.innerHTML = ''; app.appendChild(node); window.scrollTo(0, 0); return SCREEN; }
+function show(node) { SCREEN++; stopMic(); app.innerHTML = ''; app.appendChild(node); window.scrollTo(0, 0); return SCREEN; }
 
 /* ---------- saved state ---------- */
 const KEY = 'goldNinja.v1';
 function defaults() {
   return {
     nuggets: 0, earned: 0, cars: [], badges: {},
-    c: { streak: 0, fixed: 0, split: 0, mystery: 0, story: 0, words: 0, duelWins: 0, zh: 0 },
+    c: { streak: 0, fixed: 0, split: 0, mystery: 0, story: 0, words: 0, duelWins: 0, zh: 0, reads: 0 },
     day: { date: '', missions: 0 },
     fp: { progress: 0, pending: 0, approved: 0, todayDate: '', today: 0 },
     settings: { perPoint: 3, cap: 2, pin: '1234', pinSet: false, sfx: true, name: '' },
-    skill: {}, log: [], approvals: [], forgeNext: 0
+    skill: {}, log: [], approvals: [], forgeNext: 0, stories: {}
   };
 }
 function deepMerge(d, s) {
@@ -447,7 +508,7 @@ async function startTTS() {
 }
 const quietWait = text => sleep(Math.min(3500, 500 + text.length * 40));
 onClaude(startTTS);
-function browserSpeak(text, tok, zh) {
+function browserSpeak(text, tok, zh, o = {}) {
   return new Promise(res => {
     let done = false; const fin = () => { if (!done) { done = true; res(); } };
     if (!('speechSynthesis' in window)) { setTimeout(fin, Math.min(3500, 500 + text.length * 40)); return; }
@@ -457,7 +518,7 @@ function browserSpeak(text, tok, zh) {
       try {
         const u = new SpeechSynthesisUtterance(text);
         if (zh) { if (zhVoice) u.voice = zhVoice; u.lang = 'zh-CN'; u.rate = 0.8; }
-        else { if (voice) u.voice = voice; u.lang = 'en-US'; u.rate = 0.9; u.pitch = 1.05; }
+        else { if (voice) u.voice = voice; u.lang = 'en-US'; u.rate = o.rate || 0.9; u.pitch = o.pitch || 1.05; if (o.volume !== undefined) u.volume = o.volume; }
         u.onstart = () => { lastVoiceStart = Date.now(); }; u.onend = fin; u.onerror = fin;
         speechSynthesis.speak(u);
       } catch (e) { fin(); }
@@ -465,19 +526,20 @@ function browserSpeak(text, tok, zh) {
     setTimeout(fin, 2500 + text.length * (zh ? 300 : 85)); // safety net if the browser never reports "end"
   });
 }
-function speak(text, zh = false) {
+// o: { rate, pitch, volume } for acting out a line (Story Stage); only the browser voice uses pitch/volume.
+function speak(text, zh = false, o = {}) {
   const tok = ++speechToken;
   if (voiceOff) return quietWait(text); // the viewer turned reading aloud off for this page
   if (TTS) {
     try { speechSynthesis.cancel(); } catch (e) {}
-    return TTS.speak(text, { rate: zh ? 0.85 : 0.9, language: zh ? 'zh' : 'en' }).then(() => {}, e => {
+    return TTS.speak(text, { rate: o.rate || (zh ? 0.85 : 0.9), language: zh ? 'zh' : 'en' }).then(() => {}, e => {
       const code = e && e.code;
       if (code === 'not_granted') { voiceOff = true; return quietWait(text); }
       if (code === 'stopped' || tok !== speechToken) return;
-      return browserSpeak(text, tok, zh);
+      return browserSpeak(text, tok, zh, o);
     });
   }
-  return browserSpeak(text, tok, zh);
+  return browserSpeak(text, tok, zh, o);
 }
 // Say a list of English and Mandarin pieces in order: [{ en: 'Tap it.' }, { zh: '红色' }].
 // Resolves true if it finished, false if something else spoke or speech was stopped.
@@ -700,18 +762,61 @@ document.addEventListener('pointerdown', () => SFX.init(), true);
 document.addEventListener('click', e => {
   const b = e.target.closest('button');
   if (!b || b.disabled || b.closest('.locked')) return;
-  if (b.matches('.key, .buy, .say, .say-target, .tile, .wtile, .ltile, .choice, .car, .zh-opt')) return;
+  if (b.matches('.key, .buy, .say, .say-target, .tile, .wtile, .ltile, .choice, .car, .zh-opt, .cue-opt, .story-pick, .sc')) return;
   SFX.tap();
 }, true);
 
 /* ---------- art ---------- */
 const NUG = '<svg class="nugget" viewBox="0 0 40 32" aria-hidden="true"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3a3"/><stop offset=".45" stop-color="#f5b400"/><stop offset="1" stop-color="#a86f00"/></linearGradient></defs><path d="M6 20 L10 8 L22 3 L34 9 L37 21 L27 29 L12 28 Z" fill="url(#ng)" stroke="#7a5100" stroke-width="1.5"/><path d="M13 10 L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".85"/></svg>';
-function ninjaSVG(c) {
-  return `<svg viewBox="0 0 100 110" aria-hidden="true"><rect x="38" y="1" width="24" height="11" rx="3" fill="${c}"/><rect x="38" y="1" width="24" height="11" rx="3" fill="#000" opacity=".12"/>
-  <rect x="18" y="9" width="64" height="56" rx="14" fill="${c}"/><rect x="18" y="27" width="64" height="18" fill="#1b2340"/>
-  <ellipse cx="38" cy="36" rx="8" ry="5.5" fill="#fff"/><ellipse cx="62" cy="36" rx="8" ry="5.5" fill="#fff"/><circle cx="39.5" cy="36.5" r="3.2" fill="#1b2340"/><circle cx="60.5" cy="36.5" r="3.2" fill="#1b2340"/>
-  <path d="M82 31 l15 -7 l-5 12 l5 9 l-15 -6z" fill="#1b2340"/>
-  <rect x="22" y="66" width="56" height="40" rx="8" fill="${c}"/><rect x="22" y="66" width="56" height="40" rx="8" fill="#000" opacity=".1"/><rect x="22" y="80" width="56" height="7" fill="#1b2340"/><rect x="45" y="78" width="10" height="11" rx="2" fill="${c}"/></svg>`;
+// The Gold Ninja: a shaded, brick-built hero (our own design) who hovers on flapping
+// green wings and slashes a sword. Red Ninja gets the sword but no wings.
+let NJ_UID = 0;
+function ninjaSVG(c, { wings = c === '#f5b400', sword = true } = {}) {
+  const u = 'nj' + (++NJ_UID) + '-';
+  const lt = shadeHex(c, .45), dk = shadeHex(c, -.35), dk2 = shadeHex(c, -.55);
+  const wing = `<path d="M68 84 C52 70 34 52 8 46 C20 56 18 62 6 68 C22 70 24 76 12 84 C28 86 34 90 26 100 C42 98 56 96 66 94 Z" fill="url(#${u}w)" stroke="#14532d" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M64 88 C46 76 30 62 12 52 M62 90 C44 82 30 76 14 74 M62 92 C46 90 36 88 24 94" fill="none" stroke="#14532d" stroke-width="1.4" opacity=".45"/>
+    <path d="M66 84 C50 70 32 54 10 47" fill="none" stroke="#bbf7d0" stroke-width="2" opacity=".7"/>`;
+  return `<svg class="ninja3d" viewBox="0 0 160 150" aria-hidden="true"><defs>
+<radialGradient id="${u}h" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="${lt}"/><stop offset=".45" stop-color="${c}"/><stop offset="1" stop-color="${dk}"/></radialGradient>
+<linearGradient id="${u}t" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${lt}"/><stop offset=".4" stop-color="${c}"/><stop offset="1" stop-color="${dk2}"/></linearGradient>
+<linearGradient id="${u}s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${dk}"/><stop offset=".45" stop-color="${lt}"/><stop offset="1" stop-color="${dk2}"/></linearGradient>
+<linearGradient id="${u}m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f152b"/><stop offset=".5" stop-color="#2a355e"/><stop offset="1" stop-color="#0f152b"/></linearGradient>
+<linearGradient id="${u}w" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#15803d"/><stop offset=".5" stop-color="#22c55e"/><stop offset="1" stop-color="#86efac"/></linearGradient>
+<linearGradient id="${u}b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#cbd5e1"/><stop offset="1" stop-color="#64748b"/></linearGradient>
+<linearGradient id="${u}tr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#e0f2fe"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="${u}sh"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="80" cy="146" rx="34" ry="5" fill="url(#${u}sh)"/>
+<g class="nj-all">
+  ${wings ? `<g class="nj-wing">${wing}</g><g transform="translate(160 0) scale(-1 1)"><g class="nj-wing">${wing}</g></g>` : ''}
+  <path class="nj-tail" d="M104 38 C116 34 124 30 132 24 C128 34 130 40 136 46 C126 46 116 46 104 48 Z" fill="url(#${u}m)"/>
+  <rect x="55" y="111" width="24" height="31" rx="4" fill="url(#${u}t)"/><rect x="81" y="111" width="24" height="31" rx="4" fill="url(#${u}t)"/>
+  <rect x="54" y="138" width="26" height="7" rx="3" fill="${dk2}"/><rect x="80" y="138" width="26" height="7" rx="3" fill="${dk2}"/>
+  <rect x="53" y="104" width="54" height="9" rx="3" fill="${dk}"/>
+  <path d="M62 72 C52 74 47 85 46 98 L55 99 C56 88 58 81 64 79 Z" fill="url(#${u}t)"/>
+  <path d="M44 99 a7 7 0 1 0 14 0 l-4 0 a3 3 0 1 1 -6 0 Z" fill="${dk}"/>
+  <path d="M60 70 L100 70 L106 106 L54 106 Z" fill="url(#${u}t)"/>
+  <path d="M60 70 L100 70 L101 75 L59 75 Z" fill="#fff" opacity=".2"/>
+  <path d="M80 77 L83 83 L89 85 L83 87 L80 93 L77 87 L71 85 L77 83 Z" fill="#1b2340"/>
+  <rect x="55" y="95" width="50" height="6" fill="#1b2340"/><rect x="75" y="93.5" width="10" height="9" rx="2" fill="${lt}" stroke="${dk2}" stroke-width="1"/>
+  <rect x="72" y="65" width="16" height="7" fill="${dk2}"/>
+  <rect x="68" y="12" width="24" height="10" fill="url(#${u}s)"/><ellipse cx="80" cy="12" rx="12" ry="3.6" fill="${lt}"/>
+  <rect x="54" y="20" width="52" height="47" rx="13" fill="url(#${u}h)"/>
+  <rect x="54" y="34" width="52" height="16" fill="url(#${u}m)"/>
+  <g class="nj-eyes"><ellipse cx="69" cy="42" rx="6.2" ry="4.4" fill="#fff"/><ellipse cx="91" cy="42" rx="6.2" ry="4.4" fill="#fff"/>
+    <circle cx="70.5" cy="42.5" r="2.7" fill="#0f152b"/><circle cx="89.5" cy="42.5" r="2.7" fill="#0f152b"/>
+    <circle cx="71.5" cy="41.3" r=".9" fill="#fff"/><circle cx="90.5" cy="41.3" r=".9" fill="#fff"/></g>
+  <ellipse cx="66" cy="27" rx="8" ry="4" fill="#fff" opacity=".35"/>
+  ${sword ? `<path class="nj-trail" d="M154 18 A79 79 0 0 1 138 145" fill="none" stroke="url(#${u}tr)" stroke-width="9" stroke-linecap="round"/>
+  <g class="nj-arm">
+    <path d="M152 15 L157 19 L130 63 L125 59 Z" fill="url(#${u}b)" stroke="#475569" stroke-width=".8"/>
+    <path d="M153 16 L131 56" stroke="#fff" stroke-width="1.2" opacity=".8"/>
+    <rect x="120" y="58" width="16" height="4" rx="1.5" fill="#f5b400" transform="rotate(-58 128 60)"/>
+    <path d="M98 72 C108 70 116 66 121 59 L128 64 C121 75 112 81 100 80 Z" fill="url(#${u}t)"/>
+    <circle cx="125" cy="62" r="6.5" fill="${dk}"/><circle cx="123" cy="60" r="2" fill="#fff" opacity=".3"/>
+  </g>` : `<path d="M98 72 C106 76 110 86 112 98 L104 99 C103 89 101 82 96 79 Z" fill="url(#${u}t)"/><path d="M101 99 a7 7 0 1 0 14 0 l-4 0 a3 3 0 1 1 -6 0 Z" fill="${dk}"/>`}
+</g></svg>`;
 }
 /* ---------- cars: toy-car renderer ----------
    Side-view die-cast style: shaded paint, gloss, glass reflections, chrome rims
@@ -883,7 +988,8 @@ const BADGES = [
   { id: 'streak3', name: 'Triple Mission', desc: '3 missions in one day', icon: '🔥' },
   { id: 'garage', name: 'Car Collector', desc: 'Got 3 cars', icon: '🏁' },
   { id: 'salad', name: 'Fruit Salad', desc: 'Finished the fruit chant', icon: '🥗' },
-  { id: 'colors', name: 'Color Master', desc: '20 Mandarin colors', icon: '🎨' }
+  { id: 'colors', name: 'Color Master', desc: '20 Mandarin colors', icon: '🎨' },
+  { id: 'stage', name: 'Story Star', desc: 'Read 5 stories to Buddy', icon: '🎭' }
 ];
 const BADGE = Object.fromEntries(BADGES.map(b => [b.id, b]));
 // Every car has a size and a superpower. Tap a car you own to see its power.
@@ -1205,11 +1311,12 @@ function home() {
       <button class="tile t-duel" data-go="duel"><span class="t-ico">🎲</span><span class="t-name">Dice Duel</span><span class="t-sub">Beat Red Ninja</span></button>
       <button class="tile t-forge" data-go="forge"><span class="t-ico">🧱</span><span class="t-name">Word Forge</span><span class="t-sub">Build new words</span></button>
       <button class="tile t-zh" data-go="zh"><span class="t-ico">🍓</span><span class="t-name">Fruit Chant</span><span class="t-sub">中文 colors</span></button>
+      <button class="tile t-stage" data-go="stage"><span class="t-ico">🎭</span><span class="t-name">Story Stage</span><span class="t-sub">Read to Buddy</span></button>
       <button class="tile t-garage" data-go="garage"><span class="t-ico">🏎️</span><span class="t-name">Garage</span><span class="t-sub">Cars &amp; gold badges</span></button>
     </div>
     <button class="parent-link">🔒 Parent Corner</button></div></div>`);
   show(v);
-  v.querySelector('.tiles').onclick = e => { const t = e.target.closest('.tile'); if (!t) return; stopSpeech(); SFX.whoosh(); ({ dojo: dojoIntro, duel, forge, zh: zhIntro, garage })[t.dataset.go](); };
+  v.querySelector('.tiles').onclick = e => { const t = e.target.closest('.tile'); if (!t) return; stopSpeech(); SFX.whoosh(); ({ dojo: dojoIntro, duel, forge, zh: zhIntro, stage: stageIntro, garage })[t.dataset.go](); };
   v.querySelector('.parent-link').onclick = () => { stopSpeech(); parentGate(); };
 }
 
@@ -1733,6 +1840,322 @@ function zhRound(M) {
   listen();
 }
 
+/* ---------- Story Stage (read aloud with expression) ----------
+   Works on "reads fluently and with expression" (his 2/4). Each story:
+   1 Listen: Buddy reads it with expression, one line lit up at a time.
+   2 Voice Clues: how should this line sound? (the clue words: yelled, whisper, ! ?)
+   3 Read to Buddy: he records himself with a reading ruler (one line at a time)
+     and a voice meter. No timer and no speed score.
+   4 Listen back: hear the recording, see which voice lines came out big or soft,
+     check himself, and read again for a practice bonus.
+   The stories are original, written at his level: short vowels, digraphs
+   (sh, ch, th, ck, wh), blends, a few silent-e words, -ed endings, and the class's
+   expression cues (quotes, !, whisper vs. yelled). */
+const CUES = {
+  big: { icon: '📣', name: 'Big voice', tip: 'a big, loud voice', o: { rate: .95, pitch: 1.3, volume: 1 } },
+  soft: { icon: '🤫', name: 'Whisper', tip: 'a soft, quiet whisper', o: { rate: .75, pitch: .95, volume: .4 } },
+  ask: { icon: '❓', name: 'Asking voice', tip: 'an asking voice that goes up at the end', o: { rate: .85, pitch: 1.2 } },
+  tell: { icon: '🙂', name: 'Telling voice', tip: 'a calm telling voice', o: { rate: .85, pitch: 1.05 } }
+};
+const STORIES = [
+  { id: 'kick', title: 'The Big Kick', e: '⚽', lines: [
+    ['Gold Ninja ran up the grass with the ball.', 'tell'],
+    ['"I can kick it in!" he yelled.', 'big'],
+    ['The ball went up, up, up!', 'big'],
+    ['Thud. It hit the back of the net.', 'tell'],
+    ['"Did I get it?" he asked.', 'ask'],
+    ['"Yes! A goal!" yelled his pals.', 'big'],
+    ['Gold Ninja did a flip on the grass.', 'tell']] },
+  { id: 'dig', title: 'Buddy Digs', e: '🐶', lines: [
+    ['Buddy the pup dug in the mud.', 'tell'],
+    ['He dug and dug and dug.', 'tell'],
+    ['"What is in the mud?" said Buddy.', 'ask'],
+    ['Then he felt a red box.', 'tell'],
+    ['"Shh," he said in a whisper. "It is a gift."', 'soft'],
+    ['He lifted the lid. It had a stack of snacks!', 'big'],
+    ['"Yum! Let us munch!" yelled Buddy.', 'big']] },
+  { id: 'race', title: 'The Red Race Car', e: '🏎️', lines: [
+    ['Max set his red race car on the track.', 'tell'],
+    ['"Three, two, one, go!" he yelled.', 'big'],
+    ['The car went zip, zap, zoom!', 'big'],
+    ['Then it hit a bump and fell off.', 'tell'],
+    ['"Oh no," Max said in a soft, sad voice.', 'soft'],
+    ['"Can I fix it?" he asked.', 'ask'],
+    ['He set it back on the track. "Win, red car, win!"', 'big']] },
+  { id: 'ship', title: 'The Brick Ship', e: '🧱', lines: [
+    ['Tess had a big tub of bricks.', 'tell'],
+    ['"I will make a ship," she said.', 'tell'],
+    ['Click, snap, click! The ship got big.', 'big'],
+    ['"Can it float in the bath?" asked Dad.', 'ask'],
+    ['Splash! The ship did not sink!', 'big'],
+    ['"Shh," Tess said softly. "The ninjas nap on the ship."', 'soft']] },
+  { id: 'star', title: 'The Lost Ninja Star', e: '⭐', lines: [
+    ['Kit the ninja lost his gold star.', 'tell'],
+    ['"Where is it?" he asked.', 'ask'],
+    ['He went past the tent and the big rock.', 'tell'],
+    ['"Is it in the pond?" he asked.', 'ask'],
+    ['Then a frog hopped up with the star on its back!', 'big'],
+    ['"Ha! You got it!" Kit yelled.', 'big'],
+    ['"Thanks, frog," he said in a whisper.', 'soft']] }
+].map(s => ({ ...s, lines: s.lines.map(([t, cue]) => ({ t, cue })) }));
+const STORY = Object.fromEntries(STORIES.map(s => [s.id, s]));
+const CLUE_RE = /(yelled|whisper|softly|soft|sad|asked|[!?])/gi;
+const clueHTML = t => escHTML(t).replace(CLUE_RE, m => `<mark class="clue">${m}</mark>`);
+const clueWord = t => { const m = t.match(/yelled|whisper|softly|soft|asked/i); return m ? `the word "${m[0]}"` : t.includes('?') ? 'the question mark' : t.includes('!') ? 'the exclamation point' : 'the period'; };
+const cleanSay = t => t.replace(/"/g, '');
+
+/* recordings: the latest one per story, kept on this device (IndexedDB) */
+const REC_DB = {
+  db: null,
+  open() {
+    return new Promise((res, rej) => {
+      if (this.db) return res(this.db);
+      try {
+        const r = indexedDB.open('goldNinjaAudio', 1);
+        r.onupgradeneeded = () => r.result.createObjectStore('recs', { keyPath: 'id' });
+        r.onsuccess = () => res(this.db = r.result);
+        r.onerror = () => rej(r.error);
+      } catch (e) { rej(e); }
+    });
+  },
+  async put(rec) { const db = await this.open(); return new Promise((res, rej) => { const tx = db.transaction('recs', 'readwrite'); tx.objectStore('recs').put(rec); tx.oncomplete = res; tx.onerror = () => rej(tx.error); }); },
+  async all() { const db = await this.open(); return new Promise((res, rej) => { const q = db.transaction('recs').objectStore('recs').getAll(); q.onsuccess = () => res(q.result || []); q.onerror = () => rej(q.error); }); }
+};
+
+/* microphone: MediaRecorder for the recording, an analyser for the voice meter */
+let MIC = null;
+function stopMic() { if (MIC) { const m = MIC; MIC = null; m.cancel(); } }
+async function startMic() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) throw new Error('unsupported');
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: false, autoGainControl: false } });
+  const mime = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || '';
+  const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+  const chunks = [];
+  rec.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+  const AC = window.AudioContext || window.webkitAudioContext;
+  const actx = new AC(), an = actx.createAnalyser();
+  an.fftSize = 1024; actx.createMediaStreamSource(stream).connect(an);
+  const buf = new Uint8Array(an.fftSize);
+  const end = () => { stream.getTracks().forEach(t => t.stop()); actx.close().catch(() => {}); };
+  rec.start(1000);
+  const m = {
+    level() { an.getByteTimeDomainData(buf); let s = 0; for (let i = 0; i < buf.length; i++) { const v = (buf[i] - 128) / 128; s += v * v; } return Math.sqrt(s / buf.length); },
+    stop() {
+      return new Promise(res => {
+        if (MIC === m) MIC = null;
+        rec.onstop = () => { end(); res(new Blob(chunks, { type: rec.mimeType || mime || 'audio/mp4' })); };
+        try { rec.stop(); } catch (e) { end(); res(null); }
+      });
+    },
+    cancel() { try { rec.onstop = null; rec.stop(); } catch (e) {} end(); }
+  };
+  MIC = m;
+  return m;
+}
+
+const STEP_NAMES = ['Listen', 'Voice Clues', 'Read to Buddy', 'Listen back'];
+const stepsHTML = n => `<div class="steps">${STEP_NAMES.map((s, k) => `<span class="${k < n ? 'done' : k === n ? 'now' : ''}">${k + 1} ${s}</span>`).join('')}</div>`;
+function linesHTML(st, { clues = false } = {}) {
+  return st.lines.map((l, k) => `<p class="sline" data-i="${k}">${clues ? `<span class="cue-ic" title="${CUES[l.cue].name}">${CUES[l.cue].icon}</span>` : ''}<span class="stext">${clues ? clueHTML(l.t) : escHTML(l.t)}</span></p>`).join('');
+}
+
+function stageIntro() {
+  const reads = S.stories || {};
+  const v = el(`<div class="screen">${hudHTML('Story Stage')}<div class="stage-home">
+    <div class="card stage-hello"><div class="buddy-big" aria-hidden="true">🐶🎭</div><div><h2>Story Stage</h2><p>Read a story to Buddy with your best story voice. Big voice, whisper, asking voice!</p></div></div>
+    <div class="story-grid">${STORIES.map(s => `<button class="story-pick" data-id="${s.id}"><span class="sp-e">${s.e}</span><span class="sp-t">${s.title}</span><span class="sp-n">${reads[s.id] ? `⭐ Read ${reads[s.id]}×` : 'New story'}</span></button>`).join('')}</div>
+  </div></div>`);
+  show(v); bindHud(v);
+  v.querySelector('.story-grid').onclick = e => { const b = e.target.closest('.story-pick'); if (!b) return; stopSpeech(); SFX.select(); stageListen(STORY[b.dataset.id], { area: 'Story Stage', story: b.dataset.id, nuggets: 0, first: 0, fixed: 0, breaths: 0, badges: [], count: 0, reads: 0 }); };
+  speak('Welcome to Story Stage! Pick a story to read to Buddy.');
+}
+
+// 1 Listen: Buddy models the reading, one line at a time
+async function stageListen(st, M) {
+  const v = el(`<div class="screen">${hudHTML('Story Stage')}<div class="stage-wrap">
+    <div class="card story-card"><div class="prob-head"><span class="chip">${st.e} ${st.title}</span><button class="icon-btn say" aria-label="Hear it again">🔊</button></div>${stepsHTML(0)}
+      <div class="story-text">${linesHTML(st)}</div></div>
+    <div class="card buddy-card"><div class="buddy-face" aria-hidden="true">🐶</div><p class="buddy-say">Listen to me read it first. Hear how my voice changes!</p><div class="next-slot"></div></div>
+  </div></div>`);
+  const sid = show(v); bindHud(v);
+  const alive = () => sid === SCREEN;
+  const lines = [...v.querySelectorAll('.sline')];
+  async function readAll() {
+    const run = ++partsRun;
+    for (let k = 0; k < st.lines.length; k++) {
+      if (!alive() || run !== partsRun) return false;
+      lines.forEach((p, j) => { p.classList.toggle('on', j === k); p.classList.toggle('dim', j !== k); });
+      await speak(cleanSay(st.lines[k].t), false, CUES[st.lines[k].cue].o);
+    }
+    lines.forEach(p => p.classList.remove('on', 'dim'));
+    return alive() && run === partsRun;
+  }
+  v.querySelector('.say').onclick = e => { const b = e.currentTarget; b.classList.remove('ping'); void b.offsetWidth; b.classList.add('ping'); SFX.tap(); readAll(); };
+  await readAll(); if (!alive()) return;
+  const next = el('<button class="btn big gold next">Next: Voice Clues ➜</button>');
+  v.querySelector('.next-slot').appendChild(next);
+  next.onclick = () => { stopSpeech(); stageClues(st, M); };
+  speak('Now, voice clues!');
+}
+
+// 2 Voice Clues: how should this line sound?
+function stageClues(st, M, qi = 0, picks) {
+  if (!picks) {
+    const by = c => st.lines.filter(l => l.cue === c);
+    picks = [pick(by('big')), pick(by('soft')) || pick(by('ask')), pick(by('ask')) || pick(by('tell'))].filter(Boolean).slice(0, 3);
+  }
+  const L = picks[qi];
+  const v = el(`<div class="screen">${hudHTML('Story Stage')}<div class="stage-wrap">
+    <div class="card story-card"><div class="prob-head"><span class="chip">${st.e} ${st.title}</span><span class="dots">${picks.map((_, k) => `<i class="${k < qi ? 'done' : k === qi ? 'now' : ''}"></i>`).join('')}</span><button class="icon-btn say" aria-label="Hear it again">🔊</button></div>${stepsHTML(1)}
+      <p class="clue-q">How should this line sound?</p><p class="clue-line">${escHTML(L.t)}</p><div class="msg"></div></div>
+    <div class="zh-side"><div class="choices cue-choices locked">${['big', 'soft', 'ask', 'tell'].map(c => `<button class="cue-opt" data-c="${c}"><span class="cue-big">${CUES[c].icon}</span>${CUES[c].name}</button>`).join('')}<div class="pad-lock">👂 Listen first…</div></div><div class="next-slot"></div></div>
+  </div></div>`);
+  const sid = show(v); bindHud(v);
+  const alive = () => sid === SCREEN;
+  const box = v.querySelector('.cue-choices'), msg = v.querySelector('.msg'), lineEl = v.querySelector('.clue-line');
+  let unlockAt = 0, busy = true, wrong = 0, breathed = false;
+  const prompt = [{ en: 'How should this line sound?' }, { en: cleanSay(L.t) }];
+  v.querySelector('.say').onclick = e => sayAgain(e.currentTarget, prompt);
+  async function listen() { busy = true; box.classList.add('locked'); await sayParts(prompt); if (!alive()) return; box.classList.remove('locked'); SFX.ready(); unlockAt = Date.now(); busy = false; }
+  box.onclick = async e => {
+    const b = e.target.closest('.cue-opt'); if (!b || busy || box.classList.contains('locked')) return;
+    const fast = Date.now() - unlockAt < 1500; busy = true; box.classList.add('locked');
+    if (b.dataset.c === L.cue) {
+      SFX.correct(); b.classList.add('right');
+      lineEl.innerHTML = clueHTML(L.t);
+      const first = wrong === 0, n = 1;
+      S.nuggets += n; S.earned += n; M.nuggets += n; M.count++; if (first) M.first++; else M.fixed++;
+      stat('expr', { first, fixed: !first, breaths: breathed ? 1 : 0 }); save(); updateHud();
+      msg.innerHTML = `<span class="praise">${CUES[L.cue].icon} ${CUES[L.cue].name}!</span><span class="earn">+${n} ${NUG}</span>`;
+      await speak(`Yes! ${CUES[L.cue].name}. The clue is ${clueWord(L.t)}. Listen.`); if (!alive()) return;
+      await speak(cleanSay(L.t), false, CUES[L.cue].o); if (!alive()) return;
+      const last = qi === picks.length - 1;
+      const next = el(`<button class="btn big gold next">${last ? 'Your turn: read to Buddy ➜' : 'Next ➜'}</button>`);
+      v.querySelector('.next-slot').appendChild(next);
+      next.onclick = () => { stopSpeech(); if (last) stageRead(st, M); else stageClues(st, M, qi + 1, picks); };
+      return;
+    }
+    wrong++;
+    if (fast && !breathed) { breathed = true; M.breaths++; await ninjaBreath(); if (alive()) listen(); return; }
+    SFX.check(); b.classList.add('nope');
+    lineEl.innerHTML = clueHTML(L.t);
+    msg.textContent = wrong === 1 ? 'Look for the clue!' : `Try ${CUES[L.cue].icon}`;
+    if (wrong === 1) await speak(`Look for the clue. See ${clueWord(L.t)}?`);
+    else { box.querySelector(`.cue-opt[data-c="${L.cue}"]`).classList.add('pulse'); await speak('Tap the glowing one.'); }
+    if (!alive()) return;
+    box.classList.remove('locked'); unlockAt = Date.now(); busy = false;
+  };
+  listen();
+}
+
+// 3 Read to Buddy: record with a reading ruler and a voice meter
+function stageRead(st, M) {
+  const v = el(`<div class="screen">${hudHTML('Story Stage')}<div class="stage-wrap">
+    <div class="card story-card"><div class="prob-head"><span class="chip">${st.e} ${st.title}</span></div>${stepsHTML(2)}
+      <div class="story-text ruler">${linesHTML(st, { clues: true })}</div>
+      <p class="cue-key">${Object.values(CUES).map(c => `<span>${c.icon} ${c.name}</span>`).join('')}</p></div>
+    <div class="card buddy-card"><div class="buddy-face listen" aria-hidden="true">🐶</div>
+      <div class="meter" aria-hidden="true">${range(1, 12).map(() => '<i></i>').join('')}</div>
+      <p class="buddy-say">Tap the red button, then read to me! Tap "Next line" when you finish each line.</p>
+      <div class="rec-ctrl"><button class="btn big rec-btn">🎙️ Record</button></div></div>
+  </div></div>`);
+  const sid = show(v); bindHud(v);
+  const alive = () => sid === SCREEN;
+  const lines = [...v.querySelectorAll('.sline')], say = v.querySelector('.buddy-say'), ctrl = v.querySelector('.rec-ctrl');
+  const face = v.querySelector('.buddy-face'), bars = [...v.querySelectorAll('.meter i')];
+  const lvl = st.lines.map(() => ({ sum: 0, n: 0 }));
+  let cur = -1, mic = null, raf = 0, nudged = false;
+  const light = k => lines.forEach((p, j) => { p.classList.toggle('on', j === k); p.classList.toggle('dim', j > k); p.classList.toggle('read', j < k); });
+  lines.forEach(p => p.classList.add('dim'));
+  function tick() {
+    if (!alive() || !mic) return;
+    const r = mic.level();
+    const on = Math.min(bars.length, Math.round(r * 60));
+    bars.forEach((b, k) => b.classList.toggle('on', k < on));
+    face.style.transform = `scale(${1 + Math.min(.35, r * 2.5)})`;
+    if (cur >= 0 && r > .02) { lvl[cur].sum += r; lvl[cur].n++; }
+    raf = requestAnimationFrame(tick);
+  }
+  function nextLine() {
+    if (cur >= 0 && mic && lvl[cur].n < 8 && !nudged) { nudged = true; say.textContent = 'Read this line out loud to me first! 🐶'; SFX.check(); return; }
+    nudged = false; cur++;
+    if (cur >= st.lines.length) return finishRead();
+    light(cur);
+    lines[cur].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    const c = CUES[st.lines[cur].cue];
+    say.textContent = st.lines[cur].cue === 'tell' ? 'Keep going, I\'m listening!' : `Use your ${c.icon} ${c.name.toLowerCase()}!`;
+    ctrl.innerHTML = `<button class="btn big gold next-line">${cur === st.lines.length - 1 ? '✅ Done!' : 'Next line ➜'}</button>`;
+    ctrl.querySelector('.next-line').onclick = nextLine;
+  }
+  async function begin(useMic) {
+    stopSpeech();
+    if (useMic) {
+      try { mic = await startMic(); } catch (e) { mic = null; }
+      if (!alive()) { if (mic) mic.cancel(); return; }
+      if (!mic) { toast('Buddy can\'t hear the microphone, but you can still read out loud to him!'); face.classList.remove('listen'); }
+    }
+    if (mic) { raf = requestAnimationFrame(tick); face.classList.add('rec'); }
+    nextLine();
+  }
+  async function finishRead() {
+    cancelAnimationFrame(raf); bars.forEach(b => b.classList.remove('on')); face.style.transform = '';
+    let blob = null;
+    if (mic) { const m = mic; mic = null; blob = await m.stop(); }
+    if (!alive()) return;
+    stageBack(st, M, blob, lvl.map(x => x.n ? x.sum / x.n : 0));
+  }
+  ctrl.querySelector('.rec-btn').onclick = () => begin(true);
+  speak('Your turn! Tap the red button and read the story to Buddy. Look for the voice clues.');
+}
+
+// 4 Listen back: hear it, see the voice feedback, check yourself
+function stageBack(st, M, blob, levels) {
+  M.reads++;
+  const firstRead = M.reads === 1, n = firstRead ? 4 : 2;
+  S.nuggets += n; S.earned += n; M.nuggets += n; M.count++;
+  S.stories = S.stories || {}; S.stories[st.id] = (S.stories[st.id] || 0) + 1;
+  S.c.reads = (S.c.reads || 0) + 1; if (S.c.reads >= 5) award('stage', M.badges);
+  stat('readAloud', { first: firstRead, fixed: !firstRead });
+  save(); updateHud();
+  if (blob && blob.size) REC_DB.put({ id: st.id, title: st.title, t: Date.now(), blob }).catch(() => {});
+  // expression feedback: compare voiced loudness of the 📣 and 🤫 lines with the telling lines
+  const fb = [];
+  const avg = c => { const v = st.lines.map((l, k) => l.cue === c ? levels[k] : 0).filter(x => x > 0); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : 0; };
+  const base = avg('tell') || avg('ask'), big = avg('big'), soft = avg('soft');
+  if (blob && base) {
+    if (big) fb.push(big >= base * 1.15 ? '📣 Your BIG voice lines were louder. That\'s great expression!' : '📣 Next time, make your yell lines even BIGGER!');
+    if (soft) fb.push(soft <= base * .85 ? '🤫 Your whisper line was nice and soft. Sneaky ninja!' : '🤫 Next time, make your whisper line even softer.');
+  }
+  const url = blob && blob.size ? URL.createObjectURL(blob) : null;
+  const v = el(`<div class="screen">${hudHTML('Story Stage')}<div class="stage-wrap">
+    <div class="card story-card"><div class="prob-head"><span class="chip">${st.e} ${st.title}</span></div>${stepsHTML(3)}
+      <div class="woof"><span class="buddy-face happy" aria-hidden="true">🐶</span><div><h2>Woof! Great story!</h2><span class="earn">+${n} ${NUG}</span></div></div>
+      ${url ? '<button class="btn big gold play-back">▶️ Hear yourself</button>' : '<p class="buddy-say">No recording this time. Did you read with your story voice?</p>'}
+      ${fb.length ? `<ul class="fb">${fb.map(f => `<li>${f}</li>`).join('')}</ul>` : ''}</div>
+    <div class="card buddy-card"><h3 class="check-h">Check yourself</h3>
+      <div class="self-check">${['👀 I read every word carefully', '🎭 My voice matched the story', '✋ I stopped at the periods'].map((t, k) => `<button class="sc" data-k="${k}" aria-pressed="false"><span class="star">☆</span>${t}</button>`).join('')}</div>
+      <div class="row"><button class="btn big ghost again">🔁 Read it again</button><button class="btn big gold done">Finish ➜</button></div>
+      <p class="tip-small">Reading it again is how ninjas get better. You get a practice bonus!</p></div>
+  </div></div>`);
+  const sid = show(v); bindHud(v);
+  const alive = () => sid === SCREEN;
+  SFX.solved(); setTimeout(SFX.nugget, 700);
+  let audio = null;
+  const stopAudio = () => { if (audio) { audio.pause(); audio = null; } };
+  if (url) v.querySelector('.play-back').onclick = () => { stopSpeech(); stopAudio(); audio = new Audio(url); audio.play().catch(() => toast('Could not play the recording here.')); };
+  v.querySelector('.self-check').onclick = e => { const b = e.target.closest('.sc'); if (!b) return; const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', on); b.querySelector('.star').textContent = on ? '⭐' : '☆'; if (on) SFX.nugget(); };
+  v.querySelector('.again').onclick = () => { stopAudio(); stopSpeech(); stageRead(st, M); };
+  v.querySelector('.done').onclick = () => {
+    stopAudio(); stopSpeech();
+    M.summary = `Read "${st.title}" to Buddy${M.reads > 1 ? ` ${M.reads} times` : ''}`;
+    M.summarySay = `You read ${st.title} to Buddy${M.reads > 1 ? ` ${M.reads} times. Practice makes ninjas` : ''}, and you found ${M.first} voice clues on the first try.`;
+    celebrate(M, () => stageListen(st, { ...M, nuggets: 0, first: 0, fixed: 0, breaths: 0, badges: [], count: 0, reads: 0 }));
+  };
+  sayParts([{ en: `Woof! I loved that story!${url ? ' Tap the play button to hear yourself.' : ''}` }, ...fb.map(f => ({ en: f.replace(/^\S+\s/, '') }))]).then(() => {
+    if (alive()) speak('Check yourself. Tap a star for each thing you did.');
+  });
+}
+
 function carCard(c, owned) {
   const sz = CAR_SIZES[c.size] || CAR_SIZES.M, pw = c.power;
   const inner = `<div class="car-stage" style="--sz:${sz.sz}">${carSVG(c)}</div>
@@ -1795,7 +2218,7 @@ function parentGate() {
   const pad = makePad({ maxLen: 6, raw: true, onSubmit: val => { if (val === S.settings.pin) parentScreen(); else { pad.clear(); v.querySelector('.msg').textContent = 'That PIN doesn\'t match.'; } } });
   pad.unlock(); v.querySelector('.pin-pad').appendChild(pad.el);
 }
-const SKILL_NAMES = { split: 'Ninja Split (subtract through 10)', useTen: 'Use the 10 (− 9)', doubleSub: 'Near doubles (−)', doubles: 'Near doubles (+)', mystery: 'Mystery number (missing addend, = either side)', story: 'Story problems', balance: 'True/false equations', duel: 'Dice Duel facts', words: 'Word Forge (change one sound)', zhRead: 'Mandarin: read color words', zhHear: 'Mandarin: hear a color', zhChant: 'Fruit chant order', zhMix: 'Color mixing' };
+const SKILL_NAMES = { split: 'Ninja Split (subtract through 10)', useTen: 'Use the 10 (− 9)', doubleSub: 'Near doubles (−)', doubles: 'Near doubles (+)', mystery: 'Mystery number (missing addend, = either side)', story: 'Story problems', balance: 'True/false equations', duel: 'Dice Duel facts', words: 'Word Forge (change one sound)', zhRead: 'Mandarin: read color words', zhHear: 'Mandarin: hear a color', zhChant: 'Fruit chant order', zhMix: 'Color mixing', expr: 'Story Stage: voice clues', readAloud: 'Story Stage: read aloud (1st try = first read of a visit)' };
 function parentScreen() {
   const st = S.settings, fp = S.fp;
   const rows = Object.entries(S.skill).map(([k, s]) => `<tr><td>${SKILL_NAMES[k] || k}</td><td>${s.n}</td><td>${s.n ? Math.round(100 * s.first / s.n) : 0}%</td><td>${s.fixed}</td><td>${s.breaths}</td></tr>`).join('');
@@ -1811,6 +2234,7 @@ function parentScreen() {
     <div class="card"><h3>How ${escHTML(kidName())} is doing</h3>
       ${rows ? `<table><tr><th>Skill</th><th>Problems</th><th>First try</th><th>Fixed</th><th>Ninja Breaths</th></tr>${rows}</table>` : '<p>No practice yet.</p>'}
       <p><b>Ninja Breaths</b> = times he answered wrong within 1.5 s of being able to answer (a rushing signal). <b>Fixed</b> = got it after a mistake.</p></div>
+    <div class="card"><h3>Read-aloud recordings</h3><div class="recs"><p>Loading…</p></div><p class="sync-note">The latest recording of each Story Stage story, saved on this device. Good to play for his teacher.</p></div>
     <div class="card"><h3>Recent missions</h3>${logRows ? `<table><tr><th>When</th><th>Area</th><th>Items</th><th>1st try</th><th>Fixed</th><th>Breaths</th></tr>${logRows}</table>` : '<p>None yet.</p>'}</div>
     <div class="card"><h3>Settings</h3>
       <div class="stepper">New PIN: <input class="pin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 digits"><button class="btn save-pin">Save PIN</button></div>
@@ -1841,6 +2265,14 @@ function parentScreen() {
     S.settings.name = v.querySelector('.kid-name').value.replace(/[<>]/g, '').trim().slice(0, 16);
     save(); parentScreen(); tell(S.settings.name ? `Name saved. Hi, ${S.settings.name}!` : 'Name cleared. The game will say "Ninja".');
   };
+  REC_DB.all().then(list => {
+    const box = v.querySelector('.recs'); if (!box) return;
+    if (!list.length) { box.innerHTML = '<p>No recordings yet.</p>'; return; }
+    list.sort((a, b) => b.t - a.t);
+    box.innerHTML = list.map((r, k) => `<div class="rec-row"><button class="btn rec-play" data-k="${k}">▶️ Play</button><span><b>${escHTML(r.title)}</b> · ${new Date(r.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}</span></div>`).join('');
+    let audio = null;
+    box.onclick = e => { const b = e.target.closest('.rec-play'); if (!b) return; if (audio) audio.pause(); audio = new Audio(URL.createObjectURL(list[+b.dataset.k].blob)); audio.play().catch(() => toast('Could not play the recording here.')); };
+  }).catch(() => { const box = v.querySelector('.recs'); if (box) box.innerHTML = '<p>Recordings are not available in this browser.</p>'; });
   v.querySelector('.sfx-toggle').onclick = () => { S.settings.sfx = S.settings.sfx === false; save(); parentScreen(); SFX.select(); };
   v.querySelector('.reset').onclick = async () => {
     if (!await askConfirm('Erase all progress, nuggets, cars and badges on this device?', 'Erase')) return;
